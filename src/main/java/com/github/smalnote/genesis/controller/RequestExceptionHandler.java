@@ -20,9 +20,9 @@ public class RequestExceptionHandler {
 	private static final Logger logger = LogManager.getLogger(RequestExceptionHandler.class);
 
 	@ExceptionHandler(NoHandlerFoundException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	@ResponseBody
-	public ResponseEntity<ErrorInfo> noHandlerFound(HttpServletRequest req, NoHandlerFoundException ex) {
+	public ErrorInfo noHandlerFound(HttpServletRequest req, NoHandlerFoundException ex) {
 
 		String errorURL = req.getRequestURL().toString();
 		String errorMessage = "request URL not supported: " + ex.getRequestURL();
@@ -30,13 +30,13 @@ public class RequestExceptionHandler {
 		ErrorInfo errorInfo = new ErrorInfo(errorURL, errorMessage);
 		logger.error(errorInfo);
 		
-		return new ResponseEntity<ErrorInfo>(errorInfo, HttpStatus.BAD_REQUEST);
+		return errorInfo;
 	}
 
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.METHOD_NOT_ALLOWED)
 	@ResponseBody
-	public ResponseEntity<ErrorInfo> methodNotSupported(HttpServletRequest req, HttpRequestMethodNotSupportedException ex) {
+	public ErrorInfo methodNotSupported(HttpServletRequest req, HttpRequestMethodNotSupportedException ex) {
 
 		String errorURL = req.getRequestURL().toString();
 		String errorMessage = "request method not supported: " + ex.getMethod();
@@ -44,13 +44,13 @@ public class RequestExceptionHandler {
 		ErrorInfo errorInfo = new ErrorInfo(errorURL, errorMessage);
 		logger.error(errorInfo);
 		
-		return new ResponseEntity<ErrorInfo>(errorInfo, HttpStatus.METHOD_NOT_ALLOWED);
+		return errorInfo;
 	}
 
 	@ExceptionHandler(Exception.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
-	public ResponseEntity<ErrorInfo> unhandledException(HttpServletRequest req, Exception ex) {
+	public ErrorInfo unhandledException(HttpServletRequest req, Exception ex) {
 
 		String errorURL = req.getRequestURL().toString();
 		String errorMessage = "unhandled exception: " + ex;
@@ -58,6 +58,6 @@ public class RequestExceptionHandler {
 		ErrorInfo errorInfo = new ErrorInfo(errorURL, errorMessage);
 		logger.error(errorInfo);
 		
-		return new ResponseEntity<ErrorInfo>(errorInfo, HttpStatus.INTERNAL_SERVER_ERROR);
+		return errorInfo;
 	}
 }
