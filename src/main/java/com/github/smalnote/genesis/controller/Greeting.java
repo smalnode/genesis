@@ -1,4 +1,4 @@
-package com.github.smalnote.genesis.test;
+package com.github.smalnote.genesis.controller;
 
 public class Greeting {
 
