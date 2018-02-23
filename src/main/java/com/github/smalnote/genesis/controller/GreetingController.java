@@ -4,8 +4,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,8 @@ import com.github.smalnote.genesis.controller.Greeting;
 
 @RestController
 public class GreetingController {
-	private static final Logger LOG = LogManager.getLogger(ControllerAspect.class);
+	
+	private static final Logger LOG = LoggerFactory.getLogger(ControllerAspect.class);
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();

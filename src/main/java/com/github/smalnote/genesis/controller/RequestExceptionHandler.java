@@ -2,8 +2,8 @@ package com.github.smalnote.genesis.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +16,8 @@ import com.github.smalnote.genesis.model.ErrorInfo;
 
 @RestControllerAdvice
 public class RequestExceptionHandler {
-	private static final Logger logger = LogManager.getLogger(RequestExceptionHandler.class);
+	
+	private static final Logger LOG = LoggerFactory.getLogger(ControllerAspect.class);
 
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
@@ -27,7 +28,7 @@ public class RequestExceptionHandler {
 		String errorMessage = "request URL not supported: " + ex.getRequestURL();
 
 		ErrorInfo errorInfo = new ErrorInfo(errorURL, errorMessage);
-		logger.error(errorInfo);
+		LOG.error(errorInfo.toString());
 		
 		return errorInfo;
 	}
@@ -41,7 +42,7 @@ public class RequestExceptionHandler {
 		String errorMessage = "request method not supported: " + ex.getMethod();
 
 		ErrorInfo errorInfo = new ErrorInfo(errorURL, errorMessage);
-		logger.error(errorInfo);
+		LOG.error(errorInfo.toString());
 		
 		return errorInfo;
 	}
@@ -55,7 +56,7 @@ public class RequestExceptionHandler {
 		String errorMessage = "unhandled exception: " + ex;
 
 		ErrorInfo errorInfo = new ErrorInfo(errorURL, errorMessage);
-		logger.error(errorInfo);
+		LOG.error(errorInfo.toString());
 		
 		return errorInfo;
 	}
