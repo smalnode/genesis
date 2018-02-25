@@ -23,7 +23,7 @@ public class CacheController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @Cacheable(value="sampleCache3")
+    @Cacheable
     @RequestMapping(path="/cache", method=RequestMethod.GET)
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
     	HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
