@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringJUnitWebConfig(locations = "classpath:genesis.spring.xml")
+@SpringJUnitWebConfig(locations = "classpath*:genesis.spring.test.xml")
 public class TestGreeting {
 
     @Autowired
