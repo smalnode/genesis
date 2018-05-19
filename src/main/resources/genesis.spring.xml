@@ -26,7 +26,7 @@
 	
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
-	<mvc:resources mapping="/delta.io/**" location="/delta.io/" />
+	<mvc:resources mapping="/**" location="/bravo/" />
 
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">

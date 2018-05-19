@@ -8,7 +8,7 @@ public class HelloWorldController {
 
 	@RequestMapping(value = "/")
 	public String index() {
-		return "/delta.io/index.html";
+		return "/index.html";
 	}
 	
 }
