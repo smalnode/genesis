@@ -194,5 +194,10 @@
 			</plugins>
 		</pluginManagement>
 		<finalName>genesis</finalName>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 	</build>
 </project>
