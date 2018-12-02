@@ -25,9 +25,12 @@ public class GreetingController {
 
     @RequestMapping(path="/greeting", method=RequestMethod.GET)
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-    	HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+    	ServletRequestAttributes attrs = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
+    	HttpServletRequest req = attrs.getRequest();
+    	String user = (String) attrs.getAttribute("user", 0);
+    	String operation = (String) attrs.getAttribute("operation", 0);
     	LOG.debug(req.getRequestURI() + "?" + req.getQueryString());
         return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
+                            String.format(template, user + "/" + operation));
     }
 }
