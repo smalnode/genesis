@@ -1,1 +1,9 @@
 /target/
+*.class
+*.war
+*.jar
+
+.classpath
+*.swp
+.project
+.settings/

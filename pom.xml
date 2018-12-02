@@ -17,7 +17,7 @@
 		<aspectj.version>1.8.13</aspectj.version>
 		<log4j2.version>2.8.2</log4j2.version>
 		<slf4j.version>1.7.21</slf4j.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.11</junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -170,6 +170,18 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resouces</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -194,10 +206,5 @@
 			</plugins>
 		</pluginManagement>
 		<finalName>genesis</finalName>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
-		</testResources>
 	</build>
 </project>
